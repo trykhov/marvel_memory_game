@@ -1,38 +1,20 @@
-const infinityStones = ["red", "blue", "green", "yellow", "purple", "orange"];
+const stoneColors = ["red", "blue", "green", "yellow", "purple", "orange"];
+const infinityStones = ["reality", "space", "time", "mind", "power", "soul"];
 
 $(".btn").hover(function() {
-  var stoneColor = randomColor();
-  $("#" + this.id).css("background-color", stoneColor);
-  switch(stoneColor) {
-    case "red":
-      $("#reality").css("background-color", stoneColor);
-      break;
-    case "blue":
-      $("#space").css("background-color", stoneColor);
-      break;
-    case "green":
-      $("#time").css("background-color", stoneColor);
-      break;
-    case "yellow":
-      $("#mind").css("background-color", stoneColor);
-      break;
-    case "purple":
-      $("#power").css("background-color", stoneColor);
-      break;
-    case "orange":
-      $("#soul").css("background-color", stoneColor);
-      break;
-    default:
-
-    }
+  var randomIndex = Math.floor(Math.random() * 7); // picks a random index of the stoneColors index
+  $("#" + this.id).css("background-color", stoneColors[randomIndex]);
+  $("#" + infinityStones[randomIndex]).css("background-color", stoneColors[randomIndex]);
   },
-  function() {
+  function() { // turns the button & stone gray when removed
     $("#" + this.id).css("background-color", "gray");
     $(".stones").css("background-color", "gray");
   });
 
-// pick a random color from the infinityStones list
-function randomColor() {
-  var randomIndex = Math.floor(Math.random() * 7); // this will pick
-  return infinityStones[randomIndex];
-}
+$(".stones").hover(function() {
+  var indexOfStone = infinityStones.indexOf(this.id);
+  $("#" + this.id).css("background-color", stoneColors[indexOfStone]);
+  },
+  function() {
+    $(".stones").css("background-color", "gray");
+  });
