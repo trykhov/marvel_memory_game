@@ -1,4 +1,5 @@
 var phase = $("header h1").text();
+var choices = [] // this will have a max of two choices
 switch(phase) {
   case "Phase I":
     var totalCharacters = 6 * 2; // 6 characters in Phase I
@@ -11,25 +12,52 @@ switch(phase) {
     break;
 };
 
-var characterID = ""; // this is so we can implement "this" in setTimeout
+// gets the id of all the character elements
+var idList = [];
+for(let i = 1; i <= totalCharacters; i++) {
+  idList.push("#s" + i);
+}
+
 
 $(".character").click(function() {
-  characterID = "#" + this.id;
-  $(characterID).toggleClass("flip");
-  setTimeout(function() {
-    $(characterID).toggleClass("flip");
-  }, 3000);
+  // var characterSelect = $(this).children().children().attr('alt'); // character --> back --> img --> img.alt
+  var choiceOneID = this.id; // to make sure that they don't select the same element
+  // console.log(choiceOneID);
+  choices.push(choiceOneID);
+  checkID(choices);
 });
 
-
+// implements Fisher-Yates shuffle
 function shuffle(characterList) {
   var placeHolder = "";
   var randomIndex = 0;
-  for(let i = 0; i < characterList.length; i++) {
-    randomIndex = Math.floor(Math.random() * characterList.length);
+  for(let i = characterList.length - 1; i > 0; i--) {
+    randomIndex = Math.floor(Math.random() * (i + 1));
     placeHolder = characterList[i];
     characterList[i] = characterList[randomIndex];
     characterList[randomIndex] = placeHolder;
   };
   return characterList;
+}
+
+function checkID(characterList) {
+  if(characterList.length === 2) {
+    if(characterList[0] === characterList[1]) {
+      $("#" + characterList[0]).toggleClass("flip");
+      $("#" + characterList[1]).toggleClass("flip");
+      console.log("correct");
+      choices = [];
+    } else {
+      $("#" + characterList[0]).toggleClass("flip");
+      $("#" + characterList[1]).toggleClass("flip");
+      console.log("wrong");
+      setTimeout(function() {
+        $("#" + characterList[0]).toggleClass("flip");
+        $("#" + characterList[1]).toggleClass("flip");
+      }, 3000);
+      choices = []
+    }
+  } else if(characterList.length > 2) {
+    choice = [];
+  }
 }
