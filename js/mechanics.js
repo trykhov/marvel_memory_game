@@ -33,13 +33,12 @@ for(let i = 1; i <= totalCharacters; i++) {
 }
 
 
-
-
 $(".character").click(function() {
   // var characterSelect = $(this).children().children().attr('alt'); // character --> back --> img --> img.alt
   var choiceOneID = this.id; // to make sure that they don't select the same element
-  // console.log(choiceOneID);
-  choices.push(choiceOneID);
+  if(!$(this).attr('class').includes("flip")) {
+    choices.push(choiceOneID);
+  }
   checkID(choices);
 });
 
@@ -58,11 +57,14 @@ function shuffle(characterList) {
 
 function checkID(characterList) {
   if(characterList.length === 2) {
-    if(characterList[0] === characterList[1]) {
-      $("#" + characterList[0]).toggleClass("flip");
-      $("#" + characterList[1]).toggleClass("flip");
+    var choiceOne = $("#" + characterList[0] + " .back").children().attr('alt'); // they are the same image
+    var choiceTwo = $("#" + characterList[1] + " .back").children().attr('alt');
+    console.log(choiceOne, choiceTwo);
+    if(choiceOne == choiceTwo) { // if they match
+      $("#" + characterList[0]).addClass("flip"); // so they can't click twice on it
+      $("#" + characterList[1]).addClass("flip");
       choices = [];
-    } else {
+    } else { // if they don't
       $("#" + characterList[0]).toggleClass("flip");
       $("#" + characterList[1]).toggleClass("flip");
       setTimeout(function() {
@@ -71,7 +73,8 @@ function checkID(characterList) {
       }, timeLimit);
       choices = []
     }
-  } else if(characterList.length > 2) {
+  } else if(characterList.length > 2) { // in the case that someone enters more choices
+    // haven't figured out how to take only two at a time
     choice = [];
   }
 }
