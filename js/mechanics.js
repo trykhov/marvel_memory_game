@@ -15,16 +15,16 @@ var phaseI = ["<img src='images/black_widow.jpg' alt='bw'>", "<img src='images/b
 switch(phase) {
   case "Phase I":
     var totalCharacters = 6 * 2; // 6 characters in Phase I
-    var timeLimit = 3000; // 3000 milliseconds = 3 seconds
+    var timeLimit = 1000; // 3000 milliseconds = 3 seconds
     var phaseLevel = shuffle(phaseI);
     break;
   case "Phase II":
     var totalCharacters = 12 * 2; // 12 total characters in Phase II
-    var timeLimit = 2000; // 2000 milliseconds = 2 seconds;
+    var timeLimit = 800; // 2000 milliseconds = 2 seconds;
     break;
   case "Phase III":
     var totalCharacters = 16 * 2; // 32 total characters in Phase III
-    var timeLimit = 1000; // 1000 milliseconds = 1 second
+    var timeLimit = 500; // 1000 milliseconds = 1 second
     break;
 };
 
@@ -40,6 +40,7 @@ $(".character").click(function() {
   // var characterSelect = $(this).children().children().attr('alt'); // character --> back --> img --> img.alt
   var choiceOneID = this.id; // to make sure that they don't select the same element
   if((!$(this).attr('class').includes("flip")) && (choices[0] != this.id)) {
+    // prevents the user from pressing on the same element
     choices.push(choiceOneID);
   }
   checkID(choices);
@@ -96,7 +97,8 @@ function win(charactersLeft, score) {
     }
   $("header").append("<h2 class='reset'>Press any key to play again!</h2>");
   // reset
-  $(document).keypress(function() {
+  $(document).one("keypress", function() {
+    // prevents the issue with the key being pressed again after winning
     $(".reset").remove();
     $("header h2").text("Click Any Spot to Start");
     charactersStart = totalCharacters;
