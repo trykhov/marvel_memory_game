@@ -39,7 +39,7 @@ $(".character").click(function() {
   $("header h2").text("Tries: " + tries);
   // var characterSelect = $(this).children().children().attr('alt'); // character --> back --> img --> img.alt
   var choiceOneID = this.id; // to make sure that they don't select the same element
-  if(!$(this).attr('class').includes("flip")) {
+  if((!$(this).attr('class').includes("flip")) && (choices[0] != this.id)) {
     choices.push(choiceOneID);
   }
   checkID(choices);
@@ -89,7 +89,7 @@ function checkID(characterList) {
 // endgame
 function win(charactersLeft, score) {
   if(charactersLeft == 0) {
-    if(score == totalCharacters) {
+    if(score == (totalCharacters) / 2) {
       $("header h2").text("Perfect Score! Excelisor!");
     } else {
       $("header h2").text("Great job! You win!");
