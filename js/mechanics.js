@@ -97,8 +97,7 @@ function win(charactersLeft, score) {
     }
   $("header").append("<h2 class='reset'>Press any key to play again!</h2>");
   // reset
-  $(document).one("keypress", function() {
-    // prevents the issue with the key being pressed again after winning
+  $(document).one("keypress", function(event) {
     $(".reset").remove();
     $("header h2").text("Click Any Spot to Start");
     charactersStart = totalCharacters;
@@ -111,6 +110,7 @@ function win(charactersLeft, score) {
     for(let i = 1; i <= totalCharacters; i++) {
       $("#s" + i + " .back").html(phaseLevel[i - 1]);
     }
+    // prevents the issue with the key being pressed again after winning
   });
   }
 }
