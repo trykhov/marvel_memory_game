@@ -1,5 +1,7 @@
 # Marvel Memory Game
 
+Play Here: https://trykhov.github.io/marvel_memory_game/
+
 This is a game that I created in order to practice my Javascript and jQuery. My inspiration behind this game came from a game that I created in my Web Development online course. While that game was a completely different game with different mechanics, many of the techniques that I learned from that game were used in here.
 
 ## Motivation & inspiration
@@ -47,4 +49,4 @@ In addition, in implementing the algorithm that randomly assigned the elements a
 
 ## Final Note
 
-I had a lot of fun with this project. Hope you enjoy it as well! 
+I had a lot of fun with this project. Hope you enjoy it as well!
