@@ -12,7 +12,7 @@ var phaseI = ["<img src='images/black_widow.jpg' alt='bw'>", "<img src='images/b
               "<img src='images/thor.jpg' alt='thor'>","<img src='images/thor.jpg' alt='thor'>"];
 var phaseII = phaseI.concat(["<img src='images/falcon.jpg' alt='falcon'>", "<img src='images/falcon.jpg' alt='falcon'>",
                              "<img src='images/wanda.jpg' alt='wanda'>", "<img src='images/wanda.jpg' alt='wanda'>",
-                             "<img src='images/quicksilver.jpg' alt='quick'>", "<img src='images/quicksilver.jpg' alt='wanda'>",
+                             "<img src='images/quicksilver.jpg' alt='quick'>", "<img src='images/quicksilver.jpg' alt='quick'>",
                              "<img src='images/vision.jpeg' alt='vision'>", "<img src='images/vision.jpeg' alt='vision'>",
                              "<img src='images/groot.jpg' alt='groot'>", "<img src='images/groot.jpg' alt='groot'>",
                              "<img src='images/rocket.jpg' alt='rocket'>", "<img src='images/rocket.jpg' alt='rocket'>",
@@ -20,24 +20,32 @@ var phaseII = phaseI.concat(["<img src='images/falcon.jpg' alt='falcon'>", "<img
                              "<img src='images/gamora.jpg' alt='gamora'>", "<img src='images/gamora.jpg' alt='gamora'>",
                              "<img src='images/drax.jpg' alt='drax'>", "<img src='images/drax.jpg' alt='drax'>",
                              "<img src='images/antman.jpg' alt='ant'>", "<img src='images/antman.jpg' alt='ant'>"]);
-
+var phaseIII = phaseII.concat(["<img src='images/doctor_strange.jpg' alt='strange'>", "<img src='images/doctor_strange.jpg' alt='strange'>",
+                               "<img src='images/captain_marvel.jpg' alt='marvel'>", "<img src='images/captain_marvel.jpg' alt='marvel'>",
+                               "<img src='images/spiderman.jpg' alt='spiderman'>", "<img src='images/spiderman.jpg' alt='spiderman'>",
+                               "<img src='images/black_panther.jpg' alt='tchalla'>", "<img src='images/black_panther.jpg' alt='tchalla'>",
+                               "<img src='images/wasp.jpg' alt='wasp'>", "<img src='images/wasp.jpg' alt='wasp'>",
+                               "<img src='images/bucky.jpg' alt='bucky'>", "<img src='images/bucky.jpg' alt='bucky'>",
+                               "<img src='images/mantis.jpg' alt='mantis'>", "<img src='images/mantis.jpg' alt='mantis'>",
+                               "<img src='images/war_machine.jpg' alt='war'>", "<img src='images/war_machine.jpg' alt='war'>"]);
 switch(phase) {
   case "Phase I":
     // default color is blue for Loki
     var totalCharacters = 6 * 2; // 6 characters in Phase I
-    var timeLimit = 1000; // 3000 milliseconds = 3 seconds
+    var timeLimit = 500; // 3000 milliseconds = 3 seconds
     var phaseLevel = shuffle(phaseI);
     break;
   case "Phase II":
     $("body").css("background-color", "#831212"); // red for Ultron
-    var totalCharacters = 12 + 20; // 12 total characters in Phase II
+    var totalCharacters = 12 + (10 * 2); // 32 total characters in Phase II
     var timeLimit = 800; // 2000 milliseconds = 2 seconds;
     var phaseLevel = shuffle(phaseII);
     break;
   case "Phase III":
     $("body").css("background-color", "#612570"); // purple for Thanos
-    var totalCharacters = 16 * 2; // 32 total characters in Phase III
-    var timeLimit = 500; // 1000 milliseconds = 1 second
+    var totalCharacters = 32 + (8 * 2); // 32 total characters in Phase III
+    var timeLimit = 1000; // 1000 milliseconds = 1 second
+    var phaseLevel = shuffle(phaseIII);
     break;
 };
 
