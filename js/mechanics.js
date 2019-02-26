@@ -2,27 +2,40 @@ var phase = $("header h1").text();
 var choices = []; // this will have a max of two choices
 var tries = 0;
 
+
+
 var phaseI = ["<img src='images/black_widow.jpg' alt='bw'>", "<img src='images/black_widow.jpg' alt='bw'>",
               "<img src='images/captain_america.jpg' alt='capt'>", "<img src='images/captain_america.jpg' alt='capt'>",
               "<img src='images/hawkeye.jpg' alt='hawk'>", "<img src='images/hawkeye.jpg' alt='hawk'>",
               "<img src='images/hulk.jpeg' alt='hulk'>", "<img src='images/hulk.jpeg' alt='hulk'>",
               "<img src='images/iron_man.jpg' alt='tony'>", "<img src='images/iron_man.jpg' alt='tony'>",
               "<img src='images/thor.jpg' alt='thor'>","<img src='images/thor.jpg' alt='thor'>"];
-// var phaseII = phaseI + [];
-
-
+var phaseII = phaseI.concat(["<img src='images/falcon.jpg' alt='falcon'>", "<img src='images/falcon.jpg' alt='falcon'>",
+                             "<img src='images/wanda.jpg' alt='wanda'>", "<img src='images/wanda.jpg' alt='wanda'>",
+                             "<img src='images/quicksilver.jpg' alt='quick'>", "<img src='images/quicksilver.jpg' alt='wanda'>",
+                             "<img src='images/vision.jpeg' alt='vision'>", "<img src='images/vision.jpeg' alt='vision'>",
+                             "<img src='images/groot.jpg' alt='groot'>", "<img src='images/groot.jpg' alt='groot'>",
+                             "<img src='images/rocket.jpg' alt='rocket'>", "<img src='images/rocket.jpg' alt='rocket'>",
+                             "<img src='images/starlord.jpg' alt='starlord'>", "<img src='images/starlord.jpg' alt='starlord'>",
+                             "<img src='images/gamora.jpg' alt='gamora'>", "<img src='images/gamora.jpg' alt='gamora'>",
+                             "<img src='images/drax.jpg' alt='drax'>", "<img src='images/drax.jpg' alt='drax'>",
+                             "<img src='images/antman.jpg' alt='ant'>", "<img src='images/antman.jpg' alt='ant'>"]);
 
 switch(phase) {
   case "Phase I":
+    // default color is blue for Loki
     var totalCharacters = 6 * 2; // 6 characters in Phase I
     var timeLimit = 1000; // 3000 milliseconds = 3 seconds
     var phaseLevel = shuffle(phaseI);
     break;
   case "Phase II":
-    var totalCharacters = 12 * 2; // 12 total characters in Phase II
+    $("body").css("background-color", "#831212"); // red for Ultron
+    var totalCharacters = 12 + 20; // 12 total characters in Phase II
     var timeLimit = 800; // 2000 milliseconds = 2 seconds;
+    var phaseLevel = shuffle(phaseII);
     break;
   case "Phase III":
+    $("body").css("background-color", "#612570"); // purple for Thanos
     var totalCharacters = 16 * 2; // 32 total characters in Phase III
     var timeLimit = 500; // 1000 milliseconds = 1 second
     break;
@@ -97,6 +110,7 @@ function win(charactersLeft, score) {
     }
   $("header").append("<h2 class='reset'>Press any key to play again!</h2>");
   // reset
+  // prevents the issue with the key being pressed again after winning
   $(document).one("keypress", function(event) {
     $(".reset").remove();
     $("header h2").text("Click Any Spot to Start");
@@ -110,7 +124,6 @@ function win(charactersLeft, score) {
     for(let i = 1; i <= totalCharacters; i++) {
       $("#s" + i + " .back").html(phaseLevel[i - 1]);
     }
-    // prevents the issue with the key being pressed again after winning
   });
   }
 }
