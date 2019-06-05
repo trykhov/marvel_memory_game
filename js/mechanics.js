@@ -60,12 +60,16 @@ $(".character").click(function() {
   $("header h2").text("Tries: " + tries);
   // var characterSelect = $(this).children().children().attr('alt'); // character --> back --> img --> img.alt
   var choiceOneID = this.id; // to make sure that they don't select the same element
-  if((!$(this).attr('class').includes("flip")) && (choices[0] != this.id)) {
-    // prevents the user from pressing on the same element
+  if(choices.length == 0 && !$(this).attr('class').includes("flip")) {
+    $("#" + choiceOneID).toggleClass('flip');
+    choices.push(choiceOneID);
+  } else if(choices.length == 1 && choices[0] != this.id) {
     choices.push(choiceOneID);
   }
-  checkID(choices);
-  win(charactersStart, tries);
+  if(choices.length == 2) {
+    checkID(choices);
+    win(charactersStart, tries);
+  }
 });
 
 // implements Fisher-Yates shuffle
@@ -89,12 +93,11 @@ function checkID(characterList) {
     var choiceOne = $("#" + characterList[0] + " .back").children().attr('alt'); // they are the same image
     var choiceTwo = $("#" + characterList[1] + " .back").children().attr('alt');
     if(choiceOne == choiceTwo) { // if they match
-      $("#" + characterList[0]).addClass("flip"); // so they can't click twice on it
+      // $("#" + characterList[0]).addClass("flip"); // so they can't click twice on it
       $("#" + characterList[1]).addClass("flip");
       charactersStart -= 2;
       choices = [];
     } else { // if they don't
-      $("#" + characterList[0]).toggleClass("flip");
       $("#" + characterList[1]).toggleClass("flip");
       setTimeout(function() {
         $("#" + characterList[0]).toggleClass("flip");
