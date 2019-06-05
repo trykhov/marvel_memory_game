@@ -21,14 +21,17 @@ header h1 {
   margin: 20px;
 }
 
-.infinity {
+.container {
+  margin-top: 80px;
+}
+/* .infinity {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 20px;
-}
+} */
 
-.stones {
+/* .stones {
   width: 100px;
   height: 100px;
   border-radius: 100%;
@@ -40,7 +43,7 @@ header h1 {
   font-size: 30px;
   font-family: 'ZCOOL QingKe HuangYou', sans-serif;
   color: #fff;
-}
+} */
 
 .difficulty {
   background-color: gray;
@@ -50,4 +53,16 @@ header h1 {
   border-radius: 16px;
   padding: 20px;
   width: 200px;
+}
+
+#phase1:hover {
+  background-color: #064acb;
+}
+
+#phase2:hover {
+  background-color: #8f1d14
+}
+
+#phase3:hover {
+  background-color: #553c8b;
 }

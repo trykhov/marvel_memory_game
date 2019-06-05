@@ -42,7 +42,7 @@ switch(phase) {
     var phaseLevel = shuffle(phaseII);
     break;
   case "Phase III":
-    $("body").css("background-color", "#612570"); // purple for Thanos
+    $("body").css("background-color", "#553c8b"); // purple for Thanos
     var totalCharacters = 32 + (8 * 2); // 32 total characters in Phase III
     var timeLimit = 1000; // 1000 milliseconds = 1 second
     var phaseLevel = shuffle(phaseIII);
